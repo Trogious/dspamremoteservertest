@@ -3,10 +3,12 @@
 import json
 import socket
 import ssl
-import random, string, requests
+import random, string, requests, os
 
 host = '0.0.0.0'
-port = 3000
+port = os.environ.get('PORT')
+if port == None:
+    port = 3000
 backlog = 5
 size = 4096
 
@@ -104,6 +106,7 @@ def getEntries():
     return entries
 
 def start_server():
+    print('port: ' + str(port))
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     s.bind((host,port))
@@ -151,3 +154,5 @@ def start_server():
             data = sslClient.recv(size)
         sslClient.close()
         print('client closed')
+
+start_server()
