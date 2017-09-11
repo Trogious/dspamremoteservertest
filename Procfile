@@ -1,1 +1,1 @@
-dspamserver: python dspamremoteservertest.py
+worker: python dspamremoteservertest.py
