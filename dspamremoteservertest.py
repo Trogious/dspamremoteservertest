@@ -9,6 +9,8 @@ host = '0.0.0.0'
 port = os.environ.get('PORT')
 if port == None:
     port = 3000
+else:
+    port = int(port)
 backlog = 5
 size = 4096
 
